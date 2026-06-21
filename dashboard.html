@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Engine Pro - Admin</title>
+    <link rel="stylesheet" href="../client/style.css">
+    <style>
+        body { overflow: auto; align-items: flex-start; padding: 20px; flex-direction: column; }
+        .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 1200px; margin: 0 auto; }
+        .user-card { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 15px; border-radius: 12px; margin-bottom: 15px; text-align: left; }
+        .user-card h4 { color: var(--primary); margin-bottom: 8px; border-bottom: 1px solid var(--glass-border); padding-bottom: 5px; }
+        .controls { margin-top: 15px; display: flex; gap: 10px; }
+        .mini-btn { padding: 6px 12px; font-size: 0.75rem; margin: 0; }
+        .log-window { background: #000; height: 500px; overflow-y: auto; border: 1px solid var(--glass-border); padding: 15px; border-radius: 10px; }
+        
+        /* Message Card Style for Logs */
+        .message-card {
+            background: #1a1a1a;
+            border-left: 4px solid var(--primary);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            color: #fff;
+        }
+        .message-card .label { color: var(--primary); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
+        .message-card .val { margin-bottom: 8px; font-size: 1rem; }
+        .message-card .meta { font-size: 0.7rem; opacity: 0.5; text-align: right; }
+
+        .msg-input { display: flex; gap: 8px; margin-top: 15px; }
+        .msg-input input { flex: 1; font-size: 0.9rem; }
+        
+        @media (max-width: 900px) {
+            .admin-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <header style="width: 100%; text-align: center; margin-bottom: 30px;">
+        <h1 class="neon-text">OPERATOR CONTROL CENTER</h1>
+    </header>
+
+    <div class="admin-grid">
+        <section class="glass-card">
+            <h2 class="neon-text">Target Users</h2>
+            <div id="user-list">
+                <p>Awaiting connections...</p>
+            </div>
+        </section>
+
+        <section class="glass-card">
+            <h2 class="neon-text">Intercepted Signals</h2>
+            <div id="system-logs" class="log-window">
+                <div class="log-entry system-msg">[SYSTEM]: Connection established. Monitoring...</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
